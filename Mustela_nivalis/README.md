@@ -20,20 +20,20 @@ Scripts uploaded to this folder include all steps used in data analysis for *M. 
 
 Briefly, the following steps were taken:
 
-### Reference genome preparation:
+### A. Reference genome preparation:
 The following reference genomes were used for analyses:
 
 Chromosome-level: [GCF_964662115.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_964662115.1/)
 
-Draft: [GCA_019141155.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_019141155.1/])
+Draft: [GCA_019141155.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_019141155.1/)
 
 
 1. The level of completeness of the genome assemblies was assessed using BUSCO, under the carnivora_odb10 database, with the scripts <code>00_busco_chr-level_c_odb10.sh</code> and <code>00_busco_draft_c_odb10.sh</code> for the chromosome-level and draft genomes, respectively.
 
 2. The reference genomes were soft-masked with RepeatMasker, using the scripts <code>01_repeatmasker_chr_mustelidae.sh</code> and <code>01_repeatmasker_draft_mustelidae.sh</code>.
 
-### Raw data quality control:
-Raw sequencing data for the samples in the dataset were copied to a dedicated Mind The Gap folder. The data is part of a larger sequencing project available on NCBI's [BioProject PRJNA1196891](https://www.ncbi.nlm.nih.gov/bioproject/1196891).
+### B. Raw data quality control:
+Raw sequencing data for the dataset samples were copied to a dedicated Mind The Gap folder. The data is part of a larger sequencing project available on NCBI's [BioProject PRJNA1196891](https://www.ncbi.nlm.nih.gov/bioproject/1196891/).
 
 The Mind The Gap data was pre-processed as follows:
 
@@ -41,12 +41,14 @@ The Mind The Gap data was pre-processed as follows:
 
 4. Adapter sequences were removed, and reads were quality trimmed with fastp, using the script <code>04_fastp_raw_reads.sh</code>.
 
-### Mapping and BAM post-processing:
+### C. Mapping and BAM post-processing:
+Trimmed sequencing reads were mapped to each reference genome:
+
 5. The reference genomes were indexed with BWA, SAMtools and GATK before mapping, using the script <code>05_index_genomes.sh</code>.
 
 6. Reads were then mapped to each reference genome using BWA, with the script <code>06_bwa_mapping.sh</code>. FASTQ files from multiple sequencing runs per individual were independently mapped to each genome.
 
-Here, two additional steps were introduced, compared to the shared comparative workflow, to allow merging BAM files to the individual level, keeping a single BAM per individual.
+Here, two additional steps were introduced compared to the shared comparative workflow to allow merging of BAM files at the individual level, keeping a single BAM per individual.
 
 7. First, read groups were added to each BAM file, with sample, lane, and flowcell information, to allow identifying reads originating from different sequencing runs in the same individual, using Picard (script <code>07_picard_rg.sh</code>).
 
@@ -56,7 +58,9 @@ The next step resumed the shared comparative workflow:
 
 9. Duplicated reads within each sample were marked with GATK, using the script <code>09_markdups.sh</code>.
 
-### Variant calling and population-genomic statistics:
+### D. Variant calling and population genomic analyses:
+Final BAM files were used for variant calling and subsequent population genomic analyses:
+
 10. Haplotype calling was done per sample, using GATK, with the script <code>10_gvcf_calls.sh</code>.
 
 11. Resulting GVCFs were combined across samples and then genotyped for variant calling, using GATK, with the script <code>11_combine_calls.sh</code>.
