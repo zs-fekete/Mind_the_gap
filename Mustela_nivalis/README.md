@@ -27,6 +27,7 @@ Chromosome-level: [GCF_964662115.1](https://www.ncbi.nlm.nih.gov/datasets/genome
 
 Draft: [GCA_019141155.1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_019141155.1/)
 
+Each genome was processed as follows:
 
 1. The level of completeness of the genome assemblies was assessed using BUSCO, under the carnivora_odb10 database, with the scripts <code>00_busco_chr-level_c_odb10.sh</code> and <code>00_busco_draft_c_odb10.sh</code> for the chromosome-level and draft genomes, respectively.
 
