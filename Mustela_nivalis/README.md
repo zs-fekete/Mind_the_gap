@@ -8,17 +8,14 @@ Inês Miranda, CIBIO-InBIO/BIOPOLIS - University of Porto, Portugal
 
 
 ## Workflow
-All analyses were run in a conda environment dedicated to the Mind the Gap project:
-
-	
-	conda activate chromcomp
-
+All analyses were run in a conda environment dedicated to the Mind the Gap project: <code>chromcomp</code>.
 
 Analyses were run following the shared comparative workflow, with a few additional processing steps to incorporate multiple sequencing runs per individual. 
 
 Scripts uploaded to this folder include all steps used in data analysis for *M. nivalis*. Data was analysed in a SLURM environment with a job submission system.
 
 Briefly, the following steps were taken:
+
 
 ### A. Reference genome preparation:
 The following reference genomes were used for analyses:
@@ -33,6 +30,7 @@ Each genome was processed as follows:
 
 2. The reference genomes were soft-masked with RepeatMasker, using the scripts <code>01_repeatmasker_chr_mustelidae.sh</code> and <code>01_repeatmasker_draft_mustelidae.sh</code>.
 
+
 ### B. Raw data quality control:
 Raw sequencing data for the dataset samples were copied to a dedicated Mind The Gap folder. The data is part of a larger sequencing project available on NCBI's [BioProject PRJNA1196891](https://www.ncbi.nlm.nih.gov/bioproject/1196891/).
 
@@ -41,6 +39,7 @@ The Mind The Gap data was pre-processed as follows:
 3. The quality of raw reads was assessed per-sample using FastQC, with the script <code>02_fastqc_raw_reads.sh</code>, and then aggregated using MultiQC (script <code>03_multiqc_raw_reads.sh</code>).
 
 4. Adapter sequences were removed, and reads were quality trimmed with fastp, using the script <code>04_fastp_raw_reads.sh</code>.
+
 
 ### C. Mapping and BAM post-processing:
 Trimmed sequencing reads were mapped to each reference genome:
@@ -58,6 +57,7 @@ Here, two additional steps were introduced compared to the shared comparative wo
 The next step resumed the shared comparative workflow:
 
 9. Duplicated reads within each sample were marked with GATK, using the script <code>09_markdups.sh</code>.
+
 
 ### D. Variant calling and population genomic analyses:
 Final BAM files were used for variant calling and subsequent population genomic analyses:
