@@ -1,0 +1,9 @@
+name: vcftools_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - vcftools=0.1.17
+  - plink2=2.00a3  
+
