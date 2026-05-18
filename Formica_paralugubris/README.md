@@ -4,4 +4,4 @@ This folder contains the scripts used to analyse whole-genome sequencing data fr
 
 
 ## Author
-[Author name] [Author surname], [Affiliation], [Country]
+Lino Ometto, Department of Biology and Biotechnology, University of Pavia, Italy
