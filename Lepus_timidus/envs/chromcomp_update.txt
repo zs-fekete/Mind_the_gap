@@ -1,0 +1,1 @@
+mamba install -c bioconda -y RepeatMasker=4.1.8

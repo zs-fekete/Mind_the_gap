@@ -4,6 +4,12 @@ This folder contains the scripts used to analyse ddRAD data from 10 individuals 
 
 
 ## Author
-[Author name] [Author surname], [Affiliation], [Country]
+Zsófia Fekete, University of Oulu, Finland
+Jaakko Pohjoismäki, University of Eastern Finland, Finland
 
+
+## Notes
+
+MultiQC was run interactively as follows:
+        multiqc -n LT_select_mqc-1.29 LT_select/
 
